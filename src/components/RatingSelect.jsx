@@ -1,13 +1,19 @@
-function RatingSelect({ select, selected }) {
-    
-  
+import {useState} from 'react'
+import { useEffect } from 'react'
+
+function RatingSelect({ select, selected, setSelected }) {
+
+    const [rating,setRating] = useState(10)
     const handleChange = (e) => {
       select(+e.currentTarget.value)
+      setSelected(+e.currentTarget.value)
+      setRating(+e.currentTarget.value)
     }
-  
     
+    // NOTE: simplified with iteration
     return (
       <ul className='rating'>
+          <h2>{rating}</h2>
         {Array.from({ length: 10 }, (_, i) => (
           <li key={`rating-${i + 1}`}>
             <input
