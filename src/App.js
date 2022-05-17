@@ -24,7 +24,6 @@ function App() {
                 </>
               }
             ></Route>
-
             <Route path="/about" element={<AboutPage />} />
           </Routes>
           <AbourIconLink />
