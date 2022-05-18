@@ -9,10 +9,10 @@ function FeedbackForm() {
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
-
+  // These context exists in a "global" scope. We can use these varibles anywhere as long as we import these contexts
   const { addFeedback, feedbackEdit, updateFeedback } =
     useContext(FeedbackContext);
-
+  // The useEffect will trigger whenever feedbackEdit is changed
   useEffect(() => {
     if (feedbackEdit.edit === true) {
       setBtnDisabled(false);
@@ -41,6 +41,7 @@ function FeedbackForm() {
   }
 
   const handleSubmit = (e) => {
+    // In this case, prevent default can prevent refreshing the page everytime we submit the form
     e.preventDefault();
     if (text.trim().length > 10) {
       const newFeedback = {

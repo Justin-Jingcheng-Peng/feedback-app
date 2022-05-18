@@ -20,10 +20,12 @@ export const FeedbackProvider = ({ children }) => {
       rating: 10,
     },
   ]);
+  //This global state is to track if the app is in "edit" mode;
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
   });
+  //Standard CRUD
   const addFeedback = (newFeedback) => {
     newFeedback.id = uuidv4();
     setFeedback([newFeedback, ...feedback]);
@@ -33,19 +35,20 @@ export const FeedbackProvider = ({ children }) => {
       setFeedback(feedback.filter((item) => item.id != id));
     }
   };
-  // Update feedback item
+
   const updateFeedback = (id, updItem) => {
     setFeedback(
       feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
     );
   };
-  // set item to be updated
+  // set the APP to edit mode;
   const editFeedback = (item) => {
     setFeedbackEdit({
       item,
       edit: true,
     });
   };
+
   return (
     <FeedbackContext.Provider
       value={{
